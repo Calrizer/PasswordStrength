@@ -24,26 +24,19 @@ repeat
     if KeyPressed then 
     begin
         key := ReadKey; 
-        if key = #0 then ReadKey                         
+        if key = #0 then ReadKey  
         else if (key = #8) and (Length(phrase) > 0) then   
         begin 
             phrase := Copy(phrase, 1, Length(phrase)-1); 
             GotoXY(WhereX-1,WhereY); 
             ClrEol;
         end
-        else if (key = #9) and (Length(phrase) > 0) then   
-        begin 
-            {phrase := Copy(phrase, 1, Length(phrase)-1); 
-            GotoXY(WhereX-1,WhereY);} 
-            ClrEol;
-        end
-        else if (key = #32) and (Length(phrase) > 0) then   
-        begin 
-            {phrase := Copy(phrase, 1, Length(phrase)-1); 
-            GotoXY(WhereX-1,WhereY);} //FIX 
-            ClrEol;
-        end
-        else if key <> #13 then
+        
+        else if (key = #9) and (Length(phrase) > 0) then ClrEol
+        
+        else if (key = #32) and (Length(phrase) > 0) then ClrEol
+        
+        else if (key <> #13) then
         begin 
             phrase := phrase + key; 
             write('*');
@@ -52,6 +45,8 @@ repeat
 until (key = #13) and (phrase <> ''); 
 
 writeln;
+writeln;
+
 len := Length(phrase); 
 
 for current := 1 to len do
